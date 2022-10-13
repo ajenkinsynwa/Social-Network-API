@@ -29,7 +29,7 @@ createUser ({body}, res) {
 //update User 
 updateUser({ params, body}, res) {
   User.findOneAndUpdate({ _id: params.id}, body), body, 
-  { new: true, runtheValidators: true}
+  { new: true, runValidators: true}
   .then(dbUserData => {
     if (!dbUserDate) {
       res.status(404).json({message: 'No User Found With This Id'})
