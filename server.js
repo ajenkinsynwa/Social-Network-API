@@ -12,8 +12,8 @@ app.use(express.static('public'));
 
 app.use(routes);
 
+//BCS Learning Assistant Helped 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/social-network', {
- 
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
