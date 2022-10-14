@@ -1,5 +1,3 @@
-const { getAllThoughts, createThought, getThoughtById, updateThought, deleteThought } = require('../../controllers/thought-controller');
-
 const router = require('express').Router();
 
 const {
