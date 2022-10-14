@@ -1,7 +1,8 @@
-const { Schema, model } = require ('mongoose');
+const { Schema, model } = require('mongoose');
 const moment = require('moment');
 
-const UserSchema = new Schema ({
+
+const UserSchema = new Schema({
   username: {
     type: String,
     required: true,
@@ -16,23 +17,33 @@ const UserSchema = new Schema ({
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address']
   },
   thoughts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Thought'
-    }
-  ],
+      {
+          type: Schema.Types.ObjectId,
+          ref: 'Thought'
+      }
+    ],
   friends: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-    } 
- ]
-},
-{
+      {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+      }
+  ]
+  },
+  { 
   toJSON: {
     virtuals: true,
-    getters, true
+    getters: true
   },
   id: false
 }
 );
+
+//Create User Model Using teh Schema 
+const User = model('User', UserSchema);
+
+//Get Total Count of Comments 
+UserSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
+});
+
+model.exports = User; 
