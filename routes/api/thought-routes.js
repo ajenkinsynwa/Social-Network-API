@@ -1,4 +1,4 @@
-const { getAllThoughts, createThought, getThoughtById, updateThought, deleteThought } = require('../../controller/thought-controller');
+const { getAllThoughts, createThought, getThoughtById, updateThought, deleteThought } = require('../../controllers/thought-controller');
 
 const router = require('express').Router();
 
@@ -11,7 +11,7 @@ const {
   deleteThought,
   removeReaction
 } 
-= require ('../../controller/thought-controller')
+= require ('../../controllers/thought-controller')
 
 router
 .route ('/')

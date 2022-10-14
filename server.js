@@ -1,24 +1,24 @@
 const express = require('express');
-const mongodb = require('mongodb').MongoClient;
-const db = require('./config/db-connect');
-const { User, Thought} = require('./models');
+const mongoose = require('mongoose');
+const routes = require('./routes');
 
-const app = express ();
-const PORT = process.env.PORT || 3001; 
+const app = express();
+const PORT = process.env.PORT || 3001;
 
-//middleware
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
 app.use(express.static('public'));
-app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || 'mongob://localhost/social-network', {
+app.use(require('./routes/'));
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/social-network', {
   useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true
+});
 
-}); 
+// Use this to log mongo queries being executed!
+mongoose.set('debug', true);
 
-mongodb.set('debug', true);
-
-app.listen(PORT, () => console.log(`listening on localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Listening on localhost:${PORT}`));
