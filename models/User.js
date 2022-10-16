@@ -46,4 +46,6 @@ UserSchema.virtual('friendCount').get(function() {
   return this.friends.length;
 });
 
-model.exports = User; 
+//AskBCS Learning Assistant caught this error 
+
+module.exports = User
