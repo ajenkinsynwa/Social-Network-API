@@ -17,7 +17,7 @@ const thoughtController = {
     });
   },
 
-//Get Thought By ID
+//Get Thought By ID AskBCS Learning Assistant Provided Assistance here 
 getThoughtById ({ params }, res) {
   Thought.findOne({ _id: params.id })
   // .populate({
